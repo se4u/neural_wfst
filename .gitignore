@@ -1,0 +1,5 @@
+*.pyc
+*.so
+*.pdf
+*.o
+src/python/transducer/src/transducer.c

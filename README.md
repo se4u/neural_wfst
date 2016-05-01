@@ -5,7 +5,7 @@ By Pushpendre Rastogi, Ryan Cotterell, Jason Eisner
 
 ## Bibtex ##
 
-@conference{rastogi2016weighting,
+    @conference{rastogi2016weighting,
 	Author = {Pushpendre Rastogi and Ryan Cotterell and Jason Eisner},
 	Booktitle = {Proceedings of NAACL},
 	Date-Added = {2016-04-09 07:28:31 -0400},
@@ -19,16 +19,28 @@ By Pushpendre Rastogi, Ryan Cotterell, Jason Eisner
 
 The following command would train the neural transducer model on the `4th` fold of the `rP-pA` morphological transduction task. The test file is not used at this point.
 
-     PYTHONPATH=$PWD/src/python python -c "import transducer_score; print transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',dev_fn='res/celex/rP-pA/0500/4/dev',test_fn='res/celex/rP-pA/0500/4/test',folder='results/tmp')"
+     PYTHONPATH=$PWD/src/python python -c "import transducer_score; print (
+           transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',
+                                 dev_fn='res/celex/rP-pA/0500/4/dev',
+                                 test_fn='res/celex/rP-pA/0500/4/test',
+                                 folder='results/tmp'))"
 
-Once the model is trained and stored in the `tmp` directory we can test the model as follows: 
+Once the model is trained and stored in the `tmp` directory we can test the model as follows:
 
-    PYTHONPATH=$PWD/src/python python -c "import transducer_score; print transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',dev_fn='res/celex/rP-pA/0500/4/dev',test_fn='res/celex/rP-pA/0500/4/test',folder='results/tmp2',pretrained_param_pklfile='results/tmp/transducer.pkl',perform_training=0,perform_testing=1,nepochs=-1)"
+    PYTHONPATH=$PWD/src/python python -c "import transducer_score; print (
+          transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',
+                                dev_fn='res/celex/rP-pA/0500/4/dev',
+                                test_fn='res/celex/rP-pA/0500/4/test',
+                                folder='results/tmp2',
+                                pretrained_param_pklfile='results/tmp/transducer.pkl',
+                                perform_training=0,
+                                perform_testing=1,
+                                nepochs=-1)"
 
 
-For more complicated usage, including the exact parameters that were used to obtain the results in the paper, see the scripts 
- 
+For more complicated usage, including the exact parameters that were used to obtain the results in the paper, see the scripts
+
     src/python/transducer_celex.sh
     src/python/transducer_celex_test.sh
 
-These scripts contain the parameter strings that were used to obtain all the results in the paper. 
+These scripts contain the parameter strings that were used to obtain all the results in the paper.

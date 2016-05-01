@@ -1,0 +1,5 @@
+# Copied from http://stackoverflow.com/questions/115983/
+# how-can-i-add-an-empty-directory-to-a-git-repository
+# to add empty results directory to the git repo.
+*
+!.gitignore

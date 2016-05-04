@@ -44,3 +44,21 @@ For more complicated usage, including the exact parameters that were used to obt
     src/python/transducer_celex_test.sh
 
 These scripts contain the parameter strings that were used to obtain all the results in the paper.
+
+## FAQ ##
+
+1. How to fix `ImportError: No module named transducer`?
+
+   If you get the following error:
+
+     File "neural_wfst/src/python/transducer_score.py", line 25, in <module>
+       from transducer.src.transducer import Transducer
+     ImportError: No module named transducer
+
+   Then please run the following command:
+
+     $ cd src/transducer
+     $ make # Make transducer.so and copy to src
+
+   See the Makefile in `src/transducer` to understand what's going on.
+   In case there are further errors during compilation, then please file an issue.

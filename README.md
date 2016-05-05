@@ -17,7 +17,14 @@ By Pushpendre Rastogi, Ryan Cotterell, Jason Eisner
 
 ## Instructions ##
 
-The following command would train the neural transducer model on the `4th` fold of the `rP-pA` morphological transduction task. The test file is not used at this point.
+Run the following command to compile the WFST portion of the model:
+
+         $ cd src/python/transducer
+         $ make # Make transducer.so and copy to src
+         $ cd - # Go back to toplevel
+
+
+The following command will train the neural transducer model on the `4th` fold of the `rP-pA` morphological transduction task. The test file is not used at this point.
 
      PYTHONPATH=$PWD/src/python python -c "import transducer_score; print (
            transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',
@@ -38,7 +45,7 @@ Once the model is trained and stored in the `tmp` directory we can test the mode
                                 nepochs=-1)"
 
 
-For more complicated usage, including the exact parameters that were used to obtain the results in the paper, see the scripts
+For more complicated usage, including the exact parameters that were used to obtain the ablation results in the paper, see the scripts
 
     src/python/transducer_celex.sh
     src/python/transducer_celex_test.sh
@@ -51,14 +58,14 @@ These scripts contain the parameter strings that were used to obtain all the res
 
    If you get the following error:
 
-     File "neural_wfst/src/python/transducer_score.py", line 25, in <module>
-       from transducer.src.transducer import Transducer
-     ImportError: No module named transducer
+         File "neural_wfst/src/python/transducer_score.py", line 25, in <module>
+                 from transducer.src.transducer import Transducer
+         ImportError: No module named transducer
 
-   Then please run the following command:
+   Then run the following command:
 
-     $ cd src/transducer
-     $ make # Make transducer.so and copy to src
+         $ cd src/python/transducer
+         $ make # Make transducer.so and copy to src
 
-   See the Makefile in `src/transducer` to understand what's going on.
-   In case there are further errors during compilation, then please file an issue.
+   See the `Makefile` in `src/python/transducer` to understand what's going on.
+   In case there are further errors during compilation, then please raise an issue.

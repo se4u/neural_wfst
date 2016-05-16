@@ -362,7 +362,12 @@ def setup_training_environment(args, ttns, training_stats):
     for trv, tev in train_test_map.items():
         # Assert that trained parameters actually changed.
         trv_new_hash = zlib.adler32(ttns.train_stack_config[trv].get_value())
-        assert trv_new_hash != train_hash_map[trv]
+        assert trv_new_hash != train_hash_map[trv], (
+            'This assertion checks that during each training epoch, the neural '
+            'network parameters actually change. If the neural net parameters '
+            'do not change in one epoch, then we raise as assertion error '
+            'to stop the training loop.')
+        
         if hasattr(ttns.train_stack_config[trv], 'dropout_retention_freq'):
             retention_freq = ttns.train_stack_config[trv].dropout_retention_freq
             ttns.test_stack_config[tev].set_value(

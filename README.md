@@ -26,7 +26,7 @@ Run the following command to compile the WFST portion of the model:
 
 The following command will train the neural transducer model on the `4th` fold of the `rP-pA` morphological transduction task. The test file is not used at this point.
 
-     PYTHONPATH=$PWD/src/python python -c "import transducer_score; print (
+     PYTHONPATH=$PWD/src/python THEANO_FLAGS=floatX=float32 python -c "import transducer_score; print (
            transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',
                                  dev_fn='res/celex/rP-pA/0500/4/dev',
                                  test_fn='res/celex/rP-pA/0500/4/test',
@@ -34,7 +34,7 @@ The following command will train the neural transducer model on the `4th` fold o
 
 Once the model is trained and stored in the `tmp` directory we can test the model as follows:
 
-    PYTHONPATH=$PWD/src/python python -c "import transducer_score; print (
+    PYTHONPATH=$PWD/src/python THEANO_FLAGS=floatX=float32 python -c "import transducer_score; print (
           transducer_score.main(train_fn='res/celex/rP-pA/0500/4/train',
                                 dev_fn='res/celex/rP-pA/0500/4/dev',
                                 test_fn='res/celex/rP-pA/0500/4/test',

@@ -3,9 +3,9 @@
 | Description :
 | Author      : Pushpendre Rastogi
 | Created     : Sun Nov 15 03:29:29 2015 (-0500)
-| Last-Updated: Fri Sep 23 15:24:17 2016 (-0400)
+| Last-Updated: Fri Sep 23 15:43:37 2016 (-0400)
 |           By: Pushpendre Rastogi
-|     Update #: 83
+|     Update #: 85
 '''
 import rasengan
 import util_lstm_seqlabel
@@ -27,8 +27,10 @@ def compile_args(args):
         args.chips,
         stack_config)
     stack_config.stack_ns = stack_ns
-    import pdb
-    pdb.set_trace()
+    try:
+        print 'THE THEANO VARIABLE TO PRINT', (stack_config).stack_ns.debug_tv_list[4]
+    except:
+        pass
     model = args.optimizer(stack_config)
     model.stack_config = stack_config
     return model

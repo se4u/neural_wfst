@@ -3,9 +3,9 @@
 | Description : Library of train time parameter update algorithms.
 | Author      : Pushpendre Rastogi
 | Created     : Sun Apr 19 09:13:08 2015 (-0400)
-| Last-Updated: Wed Dec 16 03:02:27 2015 (-0500)
+| Last-Updated: Fri Sep 23 16:05:28 2016 (-0400)
 |           By: Pushpendre Rastogi
-|     Update #: 226
+|     Update #: 231
 
 '''
 import theano
@@ -71,10 +71,14 @@ def compile_update_fn(x, y, lr, cost, updates,
     cost    :
     updates :
     '''
+    f_to_print = None
     if y is not None:
         f_cost = theano.function(flatten([x, y]), cost, name='f_cost')
         f_grad = theano.function(flatten([x, y]), grads, name='f_grad')
     else:
+        v2p = stack_config.stack_ns.debug_tv_list[4]
+        print "THE VARIABLE TO PRINT IS", v2p
+        f_to_print = theano.function(inputs=flatten([x]), outputs=v2p, name='f_v2p')
         f_intermediate = theano.function(
             inputs=flatten([x]),
             outputs=stack_config.stack_ns.pred_y,
@@ -99,6 +103,7 @@ def compile_update_fn(x, y, lr, cost, updates,
             cols = (str1.shape[1]-1)
             assert cols % 2 == 0
             assert str2.ndim == 1
+            print f_to_print(str1)
             intermediate_tensor = f_intermediate(str1).astype('float64')
             return stack_config['endpoint'].func(
                 str1[1:, cols/2], str2, intermediate_tensor)
@@ -113,6 +118,7 @@ def compile_update_fn(x, y, lr, cost, updates,
             cols = (str1.shape[1]-1)
             assert cols % 2 == 0
             assert str2.ndim == 1
+            print f_to_print(str1)
             intermediate_tensor = f_intermediate(str1).astype('float64')
             intermediate_grad = numpy.array(
                 stack_config['endpoint'].grad(
@@ -154,6 +160,7 @@ def compile_update_fn(x, y, lr, cost, updates,
                 cols = (str1.shape[1]-1)
                 assert cols % 2 == 0
                 assert str2.ndim == 1
+                print f_to_print(str1)
                 intermediate_tensor = f_intermediate(str1).astype(
                     'float64')
                 intermediate_grad = numpy.array(
@@ -177,6 +184,9 @@ def compile_update_fn(x, y, lr, cost, updates,
             assert in_str.ndim == 2
             cols = (in_str.shape[1]-1)
             assert cols % 2 == 0
+            # ONLY KEEP THIS IF YOU JUST WANT to print the vectors
+            # during decoding (which I call classification)
+            print f_to_print(str1)
             return stack_config['endpoint'].decode(
                 in_str[1:, cols/2], f_intermediate(in_str).astype('float64'))
     nsf = Namespace()

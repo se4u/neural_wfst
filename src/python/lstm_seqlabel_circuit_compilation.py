@@ -3,9 +3,9 @@
 | Description :
 | Author      : Pushpendre Rastogi
 | Created     : Sun Nov 15 03:29:29 2015 (-0500)
-| Last-Updated: Fri Jan 22 11:28:23 2016 (-0500)
+| Last-Updated: Fri Sep 23 15:24:17 2016 (-0400)
 |           By: Pushpendre Rastogi
-|     Update #: 82
+|     Update #: 83
 '''
 import rasengan
 import util_lstm_seqlabel
@@ -27,6 +27,8 @@ def compile_args(args):
         args.chips,
         stack_config)
     stack_config.stack_ns = stack_ns
+    import pdb
+    pdb.set_trace()
     model = args.optimizer(stack_config)
     model.stack_config = stack_config
     return model

@@ -2,9 +2,9 @@
 # Description:
 # Author: Pushpendre Rastogi
 # Created: Fri Mar 20 00:22:34 2015 (-0400)
-# Last-Updated: Fri Apr 15 14:45:48 2016 (-0400)
+# Last-Updated: Fri Sep 23 15:23:51 2016 (-0400)
 #           By: Pushpendre Rastogi
-#     Update #: 949
+#     Update #: 950
 import os
 import theano
 import theano.tensor as T
@@ -1234,12 +1234,15 @@ def metaStackMaker(stack, stack_config):
                 if stack_config['multi_embed']
                 else start_tv_f('absolute_input_tv'))
     current_class_chip = Start(stack_config['in_dim'], start_tv)
+    debug_var = []
     for e in stack:
         current_class_chip = e[0](
             e[1], stack_config).prepend(current_class_chip)
+        debug_var.append(current_class_chip.output_tv)
         print e[1], "In_dim:", current_class_chip.in_dim, \
             "Out_dim:", current_class_chip.out_dim, \
-            "Output ndim:", current_class_chip.output_tv.ndim
+            "Output ndim:", current_class_chip.output_tv.ndim, \
+            "Output tv:" , debug_var[-1]
         for e in current_class_chip.needed_key():
             print (e, stack_config[e])
     #----------------------------#
@@ -1274,7 +1277,7 @@ def metaStackMaker(stack, stack_config):
     stack_ns.cost_or_known_grads_tv = cost_or_known_grads_tv
     stack_ns.grads = grads
     stack_ns.f_debug = NotImplemented
-    stack_ns.debug_tv_list = current_class_chip.debug_tv_list
+    stack_ns.debug_tv_list = current_class_chip.debug_tv_list + debug_var
     return stack_ns
 
 

@@ -69,3 +69,42 @@ These scripts contain the parameter strings that were used to obtain all the res
 
    See the `Makefile` in `src/python/transducer` to understand what's going on.
    In case there are further errors during compilation, then please raise an issue.
+   
+2. Can I get the model predictions used in Table 1 and Table 2 of the paper ? 
+   
+   See the files `lemmatization_results.tgz` and `celex_results.zip` files. These archives contain many folders and each folder contains a single file `current.test.txt` which contains the predictions of our model. Each file contains lines formatted like:
+   
+   ```
+   input prediction goldOutput
+   ^schwefelte schwefele schwefle
+   ^flunkerte flunkere flunkere
+   ^kuesste kuesse kuesse
+   ^erahnte erahne erahne
+   ^maulte maule maule 
+   ```
+   
+   For example the `celex_results.zip` archive contains the following folders. The tasks are the `13SIA 2PIE 2PKE rP` tasks. And the folds range from `0` to `4`.
+   
+   ```
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=13SIA-13SKE_fold=0_2
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=13SIA-13SKE_fold=1_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=13SIA-13SKE_fold=2_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=13SIA-13SKE_fold=3_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=13SIA-13SKE_fold=4_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PIE-13PKE_fold=0_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PIE-13PKE_fold=1_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PIE-13PKE_fold=2_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PIE-13PKE_fold=3_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PIE-13PKE_fold=4_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PKE-z_fold=0_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PKE-z_fold=1_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PKE-z_fold=2_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PKE-z_fold=3_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=2PKE-z_fold=4_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=rP-pA_fold=0_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=rP-pA_fold=1_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=rP-pA_fold=2_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=rP-pA_fold=3_0
+   drwxr-xr-x 2 prastog3 fax 29 Dec 28  2015 transtest_transducer_deep_task=rP-pA_fold=4_0
+   ```
+   

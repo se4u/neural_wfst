@@ -1,1 +1,2 @@
 rasengan=https://github.com/se4u/rasengan.git
+arsenal=https://github.com/timvieira/arsenal
